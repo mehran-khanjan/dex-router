@@ -7,4 +7,5 @@ interface ISushiswapV2Pair {
     event Transfer(address indexed from, address indexed to, uint value);
 
     function name() external pure returns (string memory);
+    function symbol() external pure returns (string memory);
 }

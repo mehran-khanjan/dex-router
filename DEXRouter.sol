@@ -45,5 +45,6 @@ interface ISushiswapV2Pair {
     function kLast() external view returns (uint);
 
     function mint(address to) external returns (uint liquidity);
+    function burn(address to) external returns (uint amount0, uint amount1);
     
 }

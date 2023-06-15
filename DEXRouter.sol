@@ -50,5 +50,10 @@ interface ISushiswapV2Pair {
     function skim(address to) external;
     function sync() external;
     function initialize(address, address) external;
-    
+}
+
+library SafeMathSushiswap {
+    function add(uint x, uint y) internal pure returns (uint z) {
+        require((z = x + y) >= x, 'ds-math-add-overflow');
+    }
 }

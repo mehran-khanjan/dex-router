@@ -56,4 +56,8 @@ library SafeMathSushiswap {
     function add(uint x, uint y) internal pure returns (uint z) {
         require((z = x + y) >= x, 'ds-math-add-overflow');
     }
+
+    function sub(uint x, uint y) internal pure returns (uint z) {
+        require((z = x - y) <= x, 'ds-math-sub-underflow');
+    }
 }

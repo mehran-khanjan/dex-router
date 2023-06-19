@@ -65,3 +65,14 @@ library SafeMathSushiswap {
         require(y == 0 || (z = x * y) / y == x, 'ds-math-mul-overflow');
     }
 }
+
+library SushiswapV2Library {
+    using SafeMathSushiswap for uint;
+
+    // returns sorted token addresses, used to handle return values from pairs sorted in this order
+    function sortTokens(address tokenA, address tokenB) internal pure returns (address token0, address token1) {
+        require(tokenA != tokenB, 'SushiswapV2Library: IDENTICAL_ADDRESSES');
+        (token0, token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
+        require(token0 != address(0), 'SushiswapV2Library: ZERO_ADDRESS');
+    }
+}

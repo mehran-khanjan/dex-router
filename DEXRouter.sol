@@ -168,3 +168,7 @@ library TransferHelper {
         require(success, 'TransferHelper: NATIVE_TRANSFER_FAILED');
     }
 }
+
+interface ISushiswapV2Factory {
+    event PairCreated(address indexed token0, address indexed token1, address pair, uint);
+}

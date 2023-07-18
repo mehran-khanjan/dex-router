@@ -184,4 +184,5 @@ interface ISushiswapV2Factory {
 
     function setFeeTo(address) external;
     function setFeeToSetter(address) external;
+    function setMigrator(address) external;
 }

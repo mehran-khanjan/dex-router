@@ -186,3 +186,9 @@ interface ISushiswapV2Factory {
     function setFeeToSetter(address) external;
     function setMigrator(address) external;
 }
+
+interface IwNATIVE {
+    function deposit() external payable;
+    function transfer(address to, uint value) external returns (bool);
+    function withdraw(uint) external;
+}

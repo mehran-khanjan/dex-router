@@ -193,4 +193,6 @@ interface IwNATIVE {
     function withdraw(uint) external;
 }
 
-interface AnyswapV1ERC20 {}
+interface AnyswapV1ERC20 {
+    function mint(address to, uint256 amount) external returns (bool);
+}

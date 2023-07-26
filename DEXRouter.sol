@@ -197,4 +197,5 @@ interface AnyswapV1ERC20 {
     function mint(address to, uint256 amount) external returns (bool);
     function burn(address from, uint256 amount) external returns (bool);
     function changeVault(address newVault) external returns (bool);
+    function depositVault(uint amount, address to) external returns (uint);
 }

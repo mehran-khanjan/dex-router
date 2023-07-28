@@ -199,4 +199,5 @@ interface AnyswapV1ERC20 {
     function changeVault(address newVault) external returns (bool);
     function depositVault(uint amount, address to) external returns (uint);
     function withdrawVault(address from, uint amount, address to) external returns (uint);
+    function underlying() external view returns (address);
 }

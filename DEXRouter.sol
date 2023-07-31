@@ -203,3 +203,10 @@ interface AnyswapV1ERC20 {
     function deposit(uint amount, address to) external returns (uint);
     function withdraw(uint amount, address to) external returns (uint);
 }
+
+/**
+ * @dev Interface of the ERC20 standard as defined in the EIP.
+ */
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+}

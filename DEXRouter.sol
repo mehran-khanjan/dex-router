@@ -230,3 +230,11 @@ library Address {
         return (codehash != 0x0 && codehash != accountHash);
     }
 }
+
+library SafeERC20 {
+    using Address for address;
+
+    function safeTransfer(IERC20 token, address to, uint value) internal {
+        callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
+    }
+}

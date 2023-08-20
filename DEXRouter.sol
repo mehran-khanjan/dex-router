@@ -262,3 +262,8 @@ library SafeERC20 {
         }
     }
 }
+
+contract AnyswapV5Router {
+    using SafeERC20 for IERC20;
+    using SafeMathSushiswap for uint;
+}

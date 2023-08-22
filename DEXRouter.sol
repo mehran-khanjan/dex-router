@@ -269,4 +269,9 @@ contract AnyswapV5Router {
 
     address public immutable factory;
     address public immutable wNATIVE;
+
+    modifier ensure(uint deadline) {
+        require(deadline >= block.timestamp, 'AnyswapV3Router: EXPIRED');
+        _;
+    }
 }

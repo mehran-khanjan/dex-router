@@ -274,4 +274,11 @@ contract AnyswapV5Router {
         require(deadline >= block.timestamp, 'AnyswapV3Router: EXPIRED');
         _;
     }
+
+    constructor(address _factory, address _wNATIVE, address _mpc) {
+        _newMPC = _mpc;
+        _newMPCEffectiveTime = block.timestamp;
+        factory = _factory;
+        wNATIVE = _wNATIVE;
+    }
 }

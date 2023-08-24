@@ -281,4 +281,8 @@ contract AnyswapV5Router {
         factory = _factory;
         wNATIVE = _wNATIVE;
     }
+
+    receive() external payable {
+        assert(msg.sender == wNATIVE); // only accept Native via fallback from the wNative contract
+    }
 }

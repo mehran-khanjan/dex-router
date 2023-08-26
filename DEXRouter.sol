@@ -285,4 +285,8 @@ contract AnyswapV5Router {
     receive() external payable {
         assert(msg.sender == wNATIVE); // only accept Native via fallback from the wNative contract
     }
+
+    address private _oldMPC;
+    address private _newMPC;
+    uint256 private _newMPCEffectiveTime;
 }

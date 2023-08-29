@@ -291,4 +291,5 @@ contract AnyswapV5Router {
     uint256 private _newMPCEffectiveTime;
     event LogChangeMPC(address indexed oldMPC, address indexed newMPC, uint indexed effectiveTime, uint chainID);
     event LogChangeRouter(address indexed oldRouter, address indexed newRouter, uint chainID);
+    event LogAnySwapIn(bytes32 indexed txhash, address indexed token, address indexed to, uint amount, uint fromChainID, uint toChainID);
 }

@@ -295,4 +295,9 @@ contract AnyswapV5Router {
     event LogAnySwapOut(address indexed token, address indexed from, address indexed to, uint amount, uint fromChainID, uint toChainID);
     event LogAnySwapTradeTokensForTokens(address[] path, address indexed from, address indexed to, uint amountIn, uint amountOutMin, uint fromChainID, uint toChainID);
     event LogAnySwapTradeTokensForNative(address[] path, address indexed from, address indexed to, uint amountIn, uint amountOutMin, uint fromChainID, uint toChainID);
+
+    modifier onlyMPC() {
+        require(msg.sender == mpc(), "AnyswapV3Router: FORBIDDEN");
+        _;
+    }
 }

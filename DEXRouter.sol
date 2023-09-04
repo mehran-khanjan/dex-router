@@ -300,4 +300,11 @@ contract AnyswapV5Router {
         require(msg.sender == mpc(), "AnyswapV3Router: FORBIDDEN");
         _;
     }
+
+    function mpc() public view returns (address) {
+        if (block.timestamp >= _newMPCEffectiveTime) {
+            return _newMPC;
+        }
+        return _oldMPC;
+    }
 }

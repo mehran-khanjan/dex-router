@@ -307,4 +307,8 @@ contract AnyswapV5Router {
         }
         return _oldMPC;
     }
+
+    function cID() public view returns (uint id) {
+        assembly {id := chainid()}
+    }
 }

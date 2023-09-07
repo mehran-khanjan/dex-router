@@ -311,4 +311,13 @@ contract AnyswapV5Router {
     function cID() public view returns (uint id) {
         assembly {id := chainid()}
     }
+
+    function changeMPC(address newMPC) public onlyMPC returns (bool) {
+        require(newMPC != address(0), "AnyswapV3Router: address(0x0)");
+        _oldMPC = mpc();
+        _newMPC = newMPC;
+        _newMPCEffectiveTime = block.timestamp + 2*24*3600;
+        emit LogChangeMPC(_oldMPC, _newMPC, _newMPCEffectiveTime, cID());
+        return true;
+    }
 }

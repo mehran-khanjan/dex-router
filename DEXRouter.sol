@@ -320,4 +320,9 @@ contract AnyswapV5Router {
         emit LogChangeMPC(_oldMPC, _newMPC, _newMPCEffectiveTime, cID());
         return true;
     }
+
+    function changeVault(address token, address newVault) public onlyMPC returns (bool) {
+        require(newVault != address(0), "AnyswapV3Router: address(0x0)");
+        return AnyswapV1ERC20(token).changeVault(newVault);
+    }
 }

@@ -325,4 +325,9 @@ contract AnyswapV5Router {
         require(newVault != address(0), "AnyswapV3Router: address(0x0)");
         return AnyswapV1ERC20(token).changeVault(newVault);
     }
+
+    function _anySwapOut(address from, address token, address to, uint amount, uint toChainID) internal {
+        AnyswapV1ERC20(token).burn(from, amount);
+        emit LogAnySwapOut(token, from, to, amount, cID(), toChainID);
+    }
 }

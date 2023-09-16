@@ -330,4 +330,9 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).burn(from, amount);
         emit LogAnySwapOut(token, from, to, amount, cID(), toChainID);
     }
+
+    // Swaps `amount` `token` from this chain to `toChainID` chain with recipient `to`
+    function anySwapOut(address token, address to, uint amount, uint toChainID) external {
+        _anySwapOut(msg.sender, token, to, amount, toChainID);
+    }
 }

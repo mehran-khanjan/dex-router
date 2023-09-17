@@ -335,4 +335,11 @@ contract AnyswapV5Router {
     function anySwapOut(address token, address to, uint amount, uint toChainID) external {
         _anySwapOut(msg.sender, token, to, amount, toChainID);
     }
+
+    // Swaps `amount` `token` from this chain to `toChainID` chain with recipient `to` by minting with `underlying`
+    function anySwapOutUnderlying(address token, address to, uint amount, uint toChainID) external {
+        IERC20(AnyswapV1ERC20(token).underlying()).safeTransferFrom(msg.sender, token, amount);
+        AnyswapV1ERC20(token).depositVault(amount, msg.sender);
+        _anySwapOut(msg.sender, token, to, amount, toChainID);
+    }
 }

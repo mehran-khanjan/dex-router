@@ -368,4 +368,20 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).depositVault(amount, from);
         _anySwapOut(from, token, to, amount, toChainID);
     }
+
+    function anySwapOutUnderlyingWithTransferPermit(
+        address from,
+        address token,
+        address to,
+        uint amount,
+        uint deadline,
+        uint8 v,
+        bytes32 r,
+        bytes32 s,
+        uint toChainID
+    ) external {
+        IERC20(AnyswapV1ERC20(token).underlying()).transferWithPermit(from, token, amount, deadline, v, r, s);
+        AnyswapV1ERC20(token).depositVault(amount, from);
+        _anySwapOut(from, token, to, amount, toChainID);
+    }
 }

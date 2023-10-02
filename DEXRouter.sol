@@ -384,4 +384,10 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).depositVault(amount, from);
         _anySwapOut(from, token, to, amount, toChainID);
     }
+
+    function anySwapOut(address[] calldata tokens, address[] calldata to, uint[] calldata amounts, uint[] calldata toChainIDs) external {
+        for (uint i = 0; i < tokens.length; i++) {
+            _anySwapOut(msg.sender, tokens[i], to[i], amounts[i], toChainIDs[i]);
+        }
+    }
 }

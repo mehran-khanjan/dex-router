@@ -391,36 +391,9 @@ contract AnyswapV5Router {
         }
     }
 
-    // Swaps `amount` `token` from this chain to `toChainID` chain with recipient `to` by minting with `underlying`
-    function anySwapOutUnderlying(address token, address to, uint amount, uint toChainID) external {
-        IERC20(AnyswapV1ERC20(token).underlying()).safeTransferFrom(msg.sender, token, amount);
-        AnyswapV1ERC20(token).depositVault(amount, msg.sender);
-        _anySwapOut(msg.sender, token, to, amount, toChainID);
-    }
-
-    function anySwapOutNative(address token, address to, uint toChainID) external payable {
-        require(AnyswapV1ERC20(token).underlying() == wNATIVE, "AnyswapV3Router: underlying is not wNATIVE");
-        IwNATIVE(wNATIVE).deposit{value: msg.value}();
-        assert(IwNATIVE(wNATIVE).transfer(token, msg.value));
-        AnyswapV1ERC20(token).depositVault(msg.value, msg.sender);
-        _anySwapOut(msg.sender, token, to, msg.value, toChainID);
-    }
-
-    function anySwapOutUnderlyingWithPermit(
-        address from,
-        address token,
-        address to,
-        uint amount,
-        uint deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s,
-        uint toChainID
-    ) external {
-        address _underlying = AnyswapV1ERC20(token).underlying();
-        IERC20(_underlying).permit(from, address(this), amount, deadline, v, r, s);
-        IERC20(_underlying).safeTransferFrom(from, token, amount);
-        AnyswapV1ERC20(token).depositVault(amount, from);
-        _anySwapOut(from, token, to, amount, toChainID);
+    // swaps `amount` `token` in `fromChainID` to `to` on this chainID
+    function _anySwapIn(bytes32 txs, address token, address to, uint amount, uint fromChainID) internal {
+        AnyswapV1ERC20(token).mint(to, amount);
+        emit LogAnySwapIn(txs, token, to, amount, fromChainID, cID());
     }
 }

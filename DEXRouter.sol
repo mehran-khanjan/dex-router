@@ -396,4 +396,10 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).mint(to, amount);
         emit LogAnySwapIn(txs, token, to, amount, fromChainID, cID());
     }
+
+    // swaps `amount` `token` in `fromChainID` to `to` on this chainID
+    // triggered by `anySwapOut`
+    function anySwapIn(bytes32 txs, address token, address to, uint amount, uint fromChainID) external onlyMPC {
+        _anySwapIn(txs, token, to, amount, fromChainID);
+    }
 }

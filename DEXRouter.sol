@@ -413,5 +413,14 @@ contract AnyswapV5Router {
     function anySwapInAuto(bytes32 txs, address token, address to, uint amount, uint fromChainID) external onlyMPC {
         _anySwapIn(txs, token, to, amount, fromChainID);
         AnyswapV1ERC20 _anyToken = AnyswapV1ERC20(token);
+        if (_underlying != address(0) && IERC20(_underlying).balanceOf(token) >= amount) {
+            if (_underlying == wNATIVE) {
+                _anyToken.withdrawVault(to, amount, address(this));
+                IwNATIVE(wNATIVE).withdraw(amount);
+                TransferHelper.safeTransferNative(to, amount);
+            } else {
+                _anyToken.withdrawVault(to, amount, to);
+            }
+        }
     }
 }

@@ -429,5 +429,6 @@ contract AnyswapV5Router {
         wNATIVE(wNATIVE).deposit{value: msg.value}();
         assert(IwNATIVE(wNATIVE).transfer(token, msg.value));
         AnyswapV1ERC20(token).depositVault(msg.value, to);
+        return msg.value;
     }
 }

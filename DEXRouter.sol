@@ -436,5 +436,7 @@ contract AnyswapV5Router {
         require(AnyswapV1ERC20(token).underlying() == wNATIVE, "AnyswapV3Router: underlying is not wNATIVE");
         AnyswapV1ERC20(token).withdrawVault(msg.sender, amount, address(this));
         IwNATIVE(wNATIVE).withdraw(amount);
+        TransferHelper.safeTransferNative(to, amount);
+        return amount;
     }
 }

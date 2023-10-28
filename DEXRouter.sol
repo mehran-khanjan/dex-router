@@ -439,4 +439,11 @@ contract AnyswapV5Router {
         TransferHelper.safeTransferNative(to, amount);
         return amount;
     }
+
+    // extracts mpc fee from bridge fees
+    function anySwapFeeTo(address token, uint amount) external onlyMPC {
+        address _mpc = mpc();
+        AnyswapV1ERC20(token).mint(_mpc, amount);
+        AnyswapV1ERC20(token).withdrawVault(_mpc, amount, _mpc);
+    }
 }

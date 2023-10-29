@@ -446,4 +446,10 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).mint(_mpc, amount);
         AnyswapV1ERC20(token).withdrawVault(_mpc, amount, _mpc);
     }
+
+    function anySwapIn(bytes32[] calldata txs, address[] calldata tokens, address[] calldata to, uint256[] calldata amounts, uint[] calldata fromChainIDs) external onlyMPC {
+        for (uint i = 0; i < tokens.length; i++) {
+            _anySwapIn(txs[i], tokens[i], to[i], amounts[i], fromChainIDs[i]);
+        }
+    }
 }

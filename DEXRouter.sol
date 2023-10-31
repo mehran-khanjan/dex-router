@@ -458,4 +458,11 @@ contract AnyswapV5Router {
         _anySwapIn(txs, token, to, amount, fromChainID);
         AnyswapV1ERC20(token).withdrawVault(to, amount, to);
     }
+
+    // swaps `amount` `token` in `fromChainID` to `to` on this chainID with `to` receiving `underlying` if possible
+    function anySwapInAuto(bytes32 txs, address token, address to, uint amount, uint fromChainID) external onlyMPC {
+        _anySwapIn(txs, token, to, amount, fromChainID);
+        AnyswapV1ERC20 _anyToken = AnyswapV1ERC20(token);
+        address _underlying = _anyToken.underlying();
+    }
 }

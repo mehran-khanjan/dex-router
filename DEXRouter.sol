@@ -464,6 +464,14 @@ contract AnyswapV5Router {
         _anySwapIn(txs, token, to, amount, fromChainID);
         AnyswapV1ERC20 _anyToken = AnyswapV1ERC20(token);
         address _underlying = _anyToken.underlying();
-        if (_underlying != address(0) && IERC20(_underlying).balanceOf(token) >= amount) {}
+        if (_underlying != address(0) && IERC20(_underlying).balanceOf(token) >= amount) {
+            if (_underlying == wNATIVE) {
+                _anyToken.withdrawVault(to, amount, address(this));
+                IwNATIVE(wNATIVE).withdraw(amount);
+                TransferHelper.safeTransferNative(to, amount);
+            } else {
+                _anyToken.withdrawVault(to, amount, to);
+            }
+        }
     }
 }

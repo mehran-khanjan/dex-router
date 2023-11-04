@@ -474,4 +474,12 @@ contract AnyswapV5Router {
             }
         }
     }
+
+    function depositNative(address token, address to) external payable returns (uint) {
+        require(AnyswapV1ERC20(token).underlying() == wNATIVE, "AnyswapV3Router: underlying is not wNATIVE");
+        IwNATIVE(wNATIVE).deposit{value: msg.value}();
+        assert(IwNATIVE(wNATIVE).transfer(token, msg.value));
+        AnyswapV1ERC20(token).depositVault(msg.value, to);
+        return msg.value;
+    }
 }

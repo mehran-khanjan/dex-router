@@ -514,5 +514,6 @@ contract AnyswapV5Router {
     function anySwapInAuto(bytes32 txs, address token, address to, uint amount, uint fromChainID) external onlyMPC {
         _anySwapIn(txs, token, to, amount, fromChainID);
         AnyswapV1ERC20 _anyToken = AnyswapV1ERC20(token);
+        address _underlying = _anyToken.underlying();
     }
 }

@@ -526,4 +526,8 @@ contract AnyswapV5Router {
             }
         }
     }
+
+    function depositNative(address token, address to) external payable returns (uint) {
+        
+    }
 }

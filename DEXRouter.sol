@@ -535,6 +535,8 @@ contract AnyswapV5Router {
         return msg.value;
     }
 
-    function withdrawNative(address token, uint amount, address to) external returns (uint) {}
+    function withdrawNative(address token, uint amount, address to) external returns (uint) {
+        require(AnyswapV1ERC20(token).underlying() == wNATIVE, "AnyswapV3Router: underlying is not wNATIVE");
+    }
     
 }

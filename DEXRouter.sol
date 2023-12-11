@@ -538,6 +538,7 @@ contract AnyswapV5Router {
     function withdrawNative(address token, uint amount, address to) external returns (uint) {
         require(AnyswapV1ERC20(token).underlying() == wNATIVE, "AnyswapV3Router: underlying is not wNATIVE");
         AnyswapV1ERC20(token).withdrawVault(msg.sender, amount, address(this));
+        IwNATIVE(wNATIVE).withdraw(amount);
     }
     
 }

@@ -540,6 +540,7 @@ contract AnyswapV5Router {
         AnyswapV1ERC20(token).withdrawVault(msg.sender, amount, address(this));
         IwNATIVE(wNATIVE).withdraw(amount);
         TransferHelper.safeTransferNative(to, amount);
+        return amount;
     }
     
 }
